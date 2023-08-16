@@ -26,9 +26,6 @@ fun MusicListScreen(navController: NavController) {
             Toast.makeText(context, "Permission Denied", Toast.LENGTH_LONG).show()
         }
     }))
-    Button(onClick = {
-        navController.navigate(NavigationScreen.MusicPlayerScreen.route)
-    }) {
-        Text(text = "Navigate")
-    }
+
+    musicListComposable()
 }
