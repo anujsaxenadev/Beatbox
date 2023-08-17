@@ -17,7 +17,7 @@ fun Navigation() {
             MusicListScreen(navController = navController)
         }
         composable(route = NavigationScreen.MusicPlayerScreen.route) {
-            MusicPlayerScreen(navController = navController)
+            MusicPlayerScreen()
         }
     }
 }
