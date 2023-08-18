@@ -10,9 +10,9 @@ import com.wordpress.anujsaxenadev.beatbox.music_list.repository.MusicListReposi
 fun musicListComposable() {
     val context = LocalContext.current
     LazyColumn {
-        val musicList = MusicListRepository().getLocalAudioFiles(context)
-        items(musicList.musicList.size) { index ->
-            Text(text = musicList.musicList[index].title)
-        }
+//        val musicList = MusicListRepository().getLocalAudioFiles(context)
+//        items(musicList.musicList.size) { index ->
+//            Text(text = musicList.musicList[index].title)
+//        }
     }
 }

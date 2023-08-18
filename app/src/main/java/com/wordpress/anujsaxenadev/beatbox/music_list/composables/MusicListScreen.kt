@@ -7,14 +7,14 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.navigation.NavController
 import com.google.accompanist.permissions.ExperimentalPermissionsApi
 import com.wordpress.anujsaxenadev.beatbox.core.permission_manager.PermissionInput
-import com.wordpress.anujsaxenadev.beatbox.core.permission_manager.PermissionManager
+import com.wordpress.anujsaxenadev.beatbox.core.permission_manager.PermissionManagerImpl
 import com.wordpress.anujsaxenadev.beatbox.core.permission_manager.PermissionResult
 
 @ExperimentalPermissionsApi
 @Composable
 fun MusicListScreen(navController: NavController) {
     val context = LocalContext.current
-    PermissionManager().checkPermission(PermissionInput(Manifest.permission.WRITE_EXTERNAL_STORAGE, object: PermissionResult{
+    PermissionManagerImpl().checkPermission(PermissionInput(Manifest.permission.WRITE_EXTERNAL_STORAGE, object: PermissionResult{
         override fun onPermissionGranted() {
             Toast.makeText(context, "Permission Granted", Toast.LENGTH_LONG).show()
         }
