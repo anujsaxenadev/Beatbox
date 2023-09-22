@@ -8,8 +8,8 @@ import com.wordpress.anujsaxenadev.beatbox.music_list.models.MusicList
 import kotlinx.coroutines.*
 import javax.inject.Inject
 
-class MusicListRepositoryImpl @Inject constructor() : MusicListRepository{
-    override suspend fun getLocalAudioFiles(context: Context, callback: (MusicList) -> Unit) {
+class MusicListRepositoryImpl @Inject constructor(private val context: Context) : MusicListRepository{
+    override fun getLocalAudioFiles(callback: (MusicList) -> Unit) {
         val exceptionHandler =  CoroutineExceptionHandler{ _, e ->
             Log.e("anuj-log", e.toString())
         }

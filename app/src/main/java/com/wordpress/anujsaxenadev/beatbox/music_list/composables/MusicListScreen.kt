@@ -1,28 +1,27 @@
 package com.wordpress.anujsaxenadev.beatbox.music_list.composables
 
-import android.Manifest
-import android.widget.Toast
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.platform.LocalContext
+import androidx.compose.runtime.collectAsState
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.google.accompanist.permissions.ExperimentalPermissionsApi
-import com.wordpress.anujsaxenadev.beatbox.core.permission_manager.PermissionInput
-import com.wordpress.anujsaxenadev.beatbox.core.permission_manager.PermissionManagerImpl
-import com.wordpress.anujsaxenadev.beatbox.core.permission_manager.PermissionResult
+import com.wordpress.anujsaxenadev.beatbox.R
+import com.wordpress.anujsaxenadev.beatbox.core.components.ImageView
+import com.wordpress.anujsaxenadev.beatbox.core.components.image_view.ImagePayload
+import com.wordpress.anujsaxenadev.beatbox.core.components.image_view.ImageViewType
+import com.wordpress.anujsaxenadev.beatbox.music_list.view_models.MusicListViewModel
 
 @ExperimentalPermissionsApi
 @Composable
 fun MusicListScreen(navController: NavController) {
-    val context = LocalContext.current
-    PermissionManagerImpl().checkPermission(PermissionInput(Manifest.permission.WRITE_EXTERNAL_STORAGE, object: PermissionResult{
-        override fun onPermissionGranted() {
-            Toast.makeText(context, "Permission Granted", Toast.LENGTH_LONG).show()
-        }
+    val musicListViewModel: MusicListViewModel = hiltViewModel()
 
-        override fun onPermissionDenied() {
-            Toast.makeText(context, "Permission Denied", Toast.LENGTH_LONG).show()
-        }
-    }))
-
-    musicListComposable()
+    musicListViewModel.initLocalStoragePermissionFlow()
+    val musicList = musicListViewModel.musicListState.collectAsState().value
+    if(musicList.isEmpty()){
+        ImageView(ImagePayload(ImageViewType.JsonAnimation, R.raw.empty))
+    }
+    else{
+        musicListComposable(musicListViewModel.musicListState.collectAsState().value)
+    }
 }

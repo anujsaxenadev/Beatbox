@@ -4,5 +4,5 @@ import android.content.Context
 import com.wordpress.anujsaxenadev.beatbox.music_list.models.MusicList
 
 interface MusicListRepository {
-    suspend fun getLocalAudioFiles(context: Context, callback: (MusicList) -> Unit)
+    fun getLocalAudioFiles(callback: (MusicList) -> Unit)
 }

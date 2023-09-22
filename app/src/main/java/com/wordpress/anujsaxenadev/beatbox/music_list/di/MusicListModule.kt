@@ -1,10 +1,12 @@
 package com.wordpress.anujsaxenadev.beatbox.music_list.di
 
+import android.content.Context
 import com.wordpress.anujsaxenadev.beatbox.music_list.repository.MusicListRepository
 import com.wordpress.anujsaxenadev.beatbox.music_list.repository.MusicListRepositoryImpl
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
+import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import javax.inject.Singleton
 
@@ -13,7 +15,7 @@ import javax.inject.Singleton
 class MusicListModule {
     @Provides
     @Singleton
-    fun provideMusicListRepository(): MusicListRepository{
-        return MusicListRepositoryImpl()
+    fun provideMusicListRepository(@ApplicationContext context: Context): MusicListRepository{
+        return MusicListRepositoryImpl(context)
     }
 }
